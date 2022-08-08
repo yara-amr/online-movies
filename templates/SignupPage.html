@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+<h1>{% block title %}Register{% endblock %}</h1>
+
+{% block content %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!--Container-->
+    <div class="container-fluid">
+
+        <!--Row-->
+        <div class="row">
+
+            <!--Section -->
+            <section class="vh-100" style="margin-bottom: 10%;">
+                
+                <!--Container 2-->
+                <div class="container-fluid h-custom">
+
+                    <!--Row 2-->
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+
+                        <!--Col 1-->
+                        <div class="col-md-9 col-lg-6 col-xl-5">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                            class="img-fluid" alt="Sample image">
+                        </div>
+                        <!--End Of Col 1-->
+
+                        <!--Col 2-->
+                        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+                            <!--Form-->
+                            <form method="post">
+
+                                <!--Name-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3" style="font-weight: bolder;">Name</label>
+                        
+                                    <input name ="name" type="text" id="form3Example3" class="form-control form-control-lg"
+                                      placeholder="Enter Name" />
+                                </div>
+                                <!--End OF Name-->
+
+                                <!--Email-->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3" style="font-weight: bolder;">Email address</label>
+                        
+                                    <input name ="email" type="email" id="form3Example3" class="form-control form-control-lg"
+                                      placeholder="Enter a valid email address" />
+                                </div>
+                                <!--End Of Email-->
+                      
+                                <!--Password-->
+                                <div class="form-outline mb-3">
+                                    <label class="form-label" for="form3Example3" style="font-weight: bolder;">Password</label>
+                        
+                                    <input name ="password" type="password" id="form3Example4" class="form-control form-control-lg"
+                                      placeholder="Enter password" />
+                                </div>
+                                <!--End Of Password-->
+
+                                <!--Submit-->
+                                <div class="text-center text-lg-start mt-4 pt-2">
+                                  <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem; font-weight: bolder;">Sign Up</button>
+                                </div>
+                                <!--End Of Submit-->
+                            
+                            </form>
+                            <!--End Of Form-->
+
+                        </div>
+                        <!--End Of Col 2-->
+
+                    </div>
+                    <!--End Of Row 2-->
+                
+                </div>
+                <!--End Of Container 2-->
+
+            </section>
+            <!--End Of Section-->
+
+        </div>
+        <!--End Of Row-->
+
+    </div>
+    <!--End Of Container-->
+{% endblock %}

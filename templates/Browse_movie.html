@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+<h1>{% block title %}Show Movie{% endblock %}</h1>
+
+{% block content %}
+    
+<!--Form-->
+<form action="{{ url_for('Browse_movie', name=row.name) }}" method="POST" >
+
+    <!--Main card-->
+    <div class="card text-white bg-dark mb-3" style="width: 50%; margin:auto; margin-top: 10%; padding: 2%; border-radius: 5%;">
+      
+        <!--card-header-->
+        <div class="card-header" style="font-weight: bolder; font-size: xx-large;">{{ row['name']}}</div>
+        <!--End OF card-header-->
+
+        <!--card-body-->
+        <div class="card-body">
+          <h5 class="card-title" ><b>Type:</b> {{ row['details']}}</h5>
+          <h5 class="card-title"><b>Release Year:</b> {{ row['release_year']}}</h5>
+          <div class="card-title"><img src="../static/images/{{row.name}}.jpg" width="100%" style="padding: 4% ;"/></div>
+          <h5 class="card-title"><b>Your Comment:</b> {{ row['comment']}}</h5>
+          <hr>
+          <h5><a class="nav-link" href="{{url_for('Add_comment')}}" style="text-decoration: none; "><b>Add New Comment</b></a></h5>
+          <h5><a class="nav-link" href="{{url_for('Add_favorite')}}" style="text-decoration: none;"><b>Add To Favorite List</b></a></h5>
+
+        </div>
+        <!--End Of card-body-->
+    
+    </div>
+    <!--End Of Main card-->
+
+</form>
+<!--End Of Form-->
+{% endblock %}
