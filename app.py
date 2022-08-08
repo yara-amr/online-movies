@@ -54,6 +54,8 @@ def index_page():
     sql_fetch_blob_query = """SELECT id from movies_data"""
     cursor.execute(sql_fetch_blob_query)
     record = cursor.fetchall()
+
+    x = [item for t in record for item in t]
      
     sqliteConnection.commit()
     cursor.close()
@@ -131,14 +133,16 @@ def SignupPage():
 def search():
     
     if request.method == 'POST':
-        search = request.form['search']
-        
-        connect = db.get_db()
-        c = connect.cursor()
-        c.execute("select * from movies_data where name = ?" ,(search,))
-        result = c.fetchall()
-        
-        db.close_db(connect)
+        if (request.form['search'] != ""):
+
+            search = request.form['search']
+            
+            connect = db.get_db()
+            c = connect.cursor()
+            c.execute("select * from movies_data where name = ?" ,(search,))
+            result = c.fetchall()
+            
+            db.close_db(connect)
     return render_template("search.html", record=result)
 
 
@@ -161,65 +165,56 @@ def Browse_movie(name = None):
 @app.route('/Add_comment', methods=['GET', 'POST'])
 def Add_comment():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        comment = request.form['comment']
-        connect = db.get_db()
-        c = connect.cursor()
-        c.execute("""UPDATE users
-                    SET comment = ?
-                    WHERE email = ?;""" ,( comment, email))
-        
-        connect.commit()
 
+        if (request.form['name'] != "" and request.form['email'] != "" and request.form['comment'] != ""):
+            name = request.form['name']
+            email = request.form['email']
+            comment = request.form['comment']
+            connect = db.get_db()
+            c = connect.cursor()
+            c.execute("""UPDATE users
+                        SET comment = ?
+                        WHERE email = ?;""" ,( comment, email))
+            
+            connect.commit()
 
-        c.execute("""UPDATE movies_data
-                    SET comment = ?
-                    WHERE name = ?;""" ,( comment, name))
-        
-        connect.commit()
+            c.execute("""UPDATE movies_data
+                        SET comment = ?
+                        WHERE name = ?;""" ,( comment, name))
+            
+            connect.commit()
 
+            cur = db.get_db().cursor()
+            cur.execute(f"select * from movies_data where name = ?", (name,))
+            row = cur.fetchone()
+            db.close_db(connect)
 
-        cur = db.get_db().cursor()
-        cur.execute(f"select * from movies_data where name = ?", (name,))
-        row = cur.fetchone()
-        db.close_db(connect)
-
-        return render_template('Browse_movie.html', row = row)
-
-
-
+            return render_template('Browse_movie.html', row = row)
 
     return render_template('Add_comment.html')    
+
 
 @app.route('/Add_favorite', methods=['GET', 'POST'])
 def Add_favorite():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        favorite_movie = request.form['favorite_movie']
-        connect = db.get_db()
-        c = connect.cursor()
-        c.execute("""UPDATE users
-                    SET favorite_movie = ?
-                    WHERE email = ?;""" ,( favorite_movie, email))
-        
-        connect.commit()
+        if (request.form['email'] != "" and request.form['favorite_movie'] != ""):
 
+            email = request.form['email']
+            favorite_movie = request.form['favorite_movie']
+            connect = db.get_db()
+            c = connect.cursor()
+            c.execute("""UPDATE users
+                        SET favorite_movie = ?
+                        WHERE email = ?;""" ,( favorite_movie, email))
+            
+            connect.commit()
 
-        c.execute("""UPDATE movies_data
-                    SET favorite_movie = ?
-                    WHERE name = ?;""" ,( favorite_movie, name))
-        
-        connect.commit()
+            cur = db.get_db().cursor()
+            cur.execute(f"select * from movies_data where name = ?", (favorite_movie,))
+            row = cur.fetchone()
+            db.close_db(connect)
 
-
-        cur = db.get_db().cursor()
-        cur.execute(f"select * from movies_data where name = ?", (name,))
-        row = cur.fetchone()
-        db.close_db(connect)
-
-        return render_template('Browse_movie.html', row = row)
+            return render_template('Browse_movie.html', row = row)
 
     return render_template('Add_favorite.html')    
 
@@ -228,4 +223,3 @@ def Add_favorite():
 def LogOut():
     session.clear()
     return redirect(url_for("index_page"))
-
