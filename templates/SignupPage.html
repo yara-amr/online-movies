@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-<h1>{% block title %}Register{% endblock %}</h1>
+<h1>{% block title %}Sign Up{% endblock %}</h1>
 
 {% block content %}
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -32,6 +32,8 @@
 
                             <!--Form-->
                             <form method="post">
+                                
+                                <h2 style="color: blue; text-align: center;"><b>{{msg}}</b></h2>
 
                                 <!--Name-->
                                 <div class="form-outline mb-4">
