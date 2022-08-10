@@ -28,6 +28,9 @@
                       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                           <!--Form-->
                           <form method="post">
+
+                              <h2 style="color: blue; text-align: center;"><b>{{msg}}</b></h2>
+  
                               <!-- Email input -->
                               <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example3" style="font-weight: bolder;">Email address</label>
@@ -50,7 +53,7 @@
                               <div class="text-center text-lg-start mt-4 pt-2">
                                   <button type="submit" class="btn btn-primary btn-lg"
                                     style="padding-left: 2.5rem; padding-right: 2.5rem; font-weight: bolder;">Login</button>
-                                    <p>Message: {{msg}}</p>
+                                    
                                     <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="{{url_for('SignupPage')}}"
                                       class="link-danger" >Register</a></p>
                               </div>
