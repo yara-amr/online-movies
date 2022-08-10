@@ -1,34 +1,38 @@
+
 {% extends 'base.html' %}
 
-<h1>{% block title %}Add Favorite Movie{% endblock %}</h1>
-
-{% block header %}<h1>Pleaes Full All field </h1>{% endblock %}
+<h1>{% block title %}Favorite List{% endblock %}</h1>
 
 {% block content %}
-<!--Div-->
-<div style="margin: auto; margin-top: 10%; width: 50%; padding: 5%; background-color: #212529; color: white; border-radius: 20% 3%;">
-    <!--Form-->
-    <form method="post" >
-        <!--First Div-->
-        <div class="mb-3">
-          <h2><b>Favorite Movie</b></h2>
-            <input name ="favorite_movie" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    
+
+<!--Form-->
+<form method="POST" >
+    <h1 style="text-align: center; margin-top: 5%; font-weight: bolder; ">Your Favorite List</h1>
+
+    <!--Main card-->
+    <div class="card text-white bg-dark mb-3" style="width: 60%; margin:auto; margin-top: 3%; padding: 2%; border-radius: 5%;">
+
+          {% for r in row %}
+            <!--Card-->
+            <div class="card" style=" font-weight: bolder; width: 100%;">                
+                <!--Card Body-->
+                <div class="card-body">
+                    <p class="card-text" style="color: black;">{{ r["movie_name"]}}</p>
+                </div>
+                <!--End OF Card Body-->
+            
+            </div>
+            <br>
+            <!--End Of Card-->
+            {% endfor %}
+            
         </div>
-        <!--End Of First Div-->
-        
-        <!--Second Div-->
-        <div class="mb-3">
-          <h2><b>Email</b></h2>
-          <input name ="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <!--End Of Seconf Div-->
-        
-        <!--Submit Btn--> 
-        <button type="submit" class="btn" style="font-weight: bolder; margin-top: 5%; background-color:white; font-size: x-large;">Submit</button>
-        <!--End Of Submit Btn-->
-      
-      </form>
-      <!--End Of Form-->
-</div>
-<!--End Of Div-->
+        <!--End Of card-body-->
+    
+    </div>
+    <!--End Of Main card-->
+
+</form>
+<!--End Of Form-->
 {% endblock %}
