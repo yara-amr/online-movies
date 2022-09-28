@@ -1,4 +1,4 @@
- import db
+import db
 import sqlite3
 from msilib.schema import tables
 from db import get_db, close_db 
